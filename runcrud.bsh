@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+export CATALINA_HOME=$HOME"/bin/apache-tomcat-9.0.46"
+
+stop_tomcat()
+{
+   /bin/sh $CATALINA_HOME/bin/catalina.sh stop
+}
+
+start_tomcat()
+{
+   /bin/sh $CATALINA_HOME/bin/catalina.sh start
+   end
+}
+
+rename() {
+   /bin/rm build/libs/crud.war
+   if /bin/cp build/libs/tasks-0.0.1-SNAPSHOT.war build/libs/crud.war; then
+      /bin/echo $0": Successfully renamed file"
+   else
+      /bin/echo $0": Cannot rename file"
+      fail
+   fi
+}
+
+copy_file() {
+   if /bin/cp build/libs/crud.war $CATALINA_HOME/webapps; then
+      start_tomcat
+   else
+      fail
+   fi
+}
+
+fail() {
+   /bin/echo $0": There were errors"
+}
+
+end() {
+   /bin/echo $0": Work is finished"
+}
+
+# if ./gradlew build; then
+if /bin/bash gradlew build; then
+   rename
+   copy_file
+else
+   stop_tomcat
+   fail
+fi

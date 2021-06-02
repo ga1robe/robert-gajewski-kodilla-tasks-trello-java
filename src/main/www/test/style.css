@@ -1,0 +1,17 @@
+body {
+    background-color: lightgrey;
+    color: blue;
+}
+h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #d23;
+    font-size: 32px;
+}
+h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #b11;
+    font-size: 24px;
+}
+
