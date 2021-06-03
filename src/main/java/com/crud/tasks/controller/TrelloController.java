@@ -25,7 +25,7 @@ public class TrelloController {
         trelloBoards.stream()
                 .filter(t -> t.getId().contains("6091a82320ed4b01b9191a6a"))
                 .filter(t -> t.getName().contains("Kodilla Application"))
-                .map(t -> "fields: { name: \"" + t.getName() + "\" ," + "\tid: " + t.getId() + " }")
+                .map(t -> "fields: {  name: \"" + t.getName() + "\" ," + "\tid: " + t.getId() + "  }")
                 .collect(Collectors.toList()).forEach(System.out::println);
     }
 }
