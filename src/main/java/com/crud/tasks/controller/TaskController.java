@@ -21,8 +21,6 @@ public class TaskController {
     private final DbService dbService;
     private final TaskMapper taskMapper;
 
-    private final List<TaskDto> taskDtoList = new ArrayList<>();
-
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(
