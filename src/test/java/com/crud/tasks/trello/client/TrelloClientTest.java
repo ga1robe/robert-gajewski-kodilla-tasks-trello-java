@@ -63,7 +63,7 @@ class TrelloClientTest {
         /**
          * Following stubbings are unnecessary.
          *    when(trelloConfig.getTrelloUser()).thenReturn("test");
-         * use the static method Mockito.lenient() to enable the lenient stubbing on
+         * Using the static method Mockito.lenient() to enable the lenient stubbing on
          * the add method of our mock list.
          */
         lenient().when(trelloConfig.getTrelloUser()).thenReturn(String.valueOf(true));
