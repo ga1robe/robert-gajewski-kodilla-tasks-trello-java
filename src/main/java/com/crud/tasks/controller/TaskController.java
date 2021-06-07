@@ -8,10 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-//@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*") /* bad version */
 
 @CrossOrigin("*")
 @RestController
