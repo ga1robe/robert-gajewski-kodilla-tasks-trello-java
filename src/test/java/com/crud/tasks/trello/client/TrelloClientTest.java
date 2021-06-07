@@ -66,7 +66,7 @@ class TrelloClientTest {
          * Use of the static method Mockito.lenient() to enable the lenient stubbing on
          * the add method of our mock list.
          */
-        lenient().when(trelloConfig.getTrelloUser()).thenReturn(String.valueOf(true));
+        lenient().when(trelloConfig.getTrelloUser()).thenReturn("test");
 
         TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test task",
