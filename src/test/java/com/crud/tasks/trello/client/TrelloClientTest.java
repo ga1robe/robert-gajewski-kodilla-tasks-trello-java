@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 //@ExtendWith(MockitoExtension.class)
@@ -55,11 +56,18 @@ class TrelloClientTest {
 
     @Test
     public void shouldCreateCard() throws URISyntaxException {
-        // Given
+        /* Given */
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("https://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
-//        when(trelloConfig.getTrelloUser()).thenReturn("test");
+        /**
+         * Following stubbings are unnecessary.
+         *    when(trelloConfig.getTrelloUser()).thenReturn("test");
+         * use the static method Mockito.lenient() to enable the lenient stubbing on
+         * the add method of our mock list.
+         */
+        lenient().when(trelloConfig.getTrelloUser()).thenReturn(String.valueOf(true));
+
         TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test task",
                 "Test Description",
@@ -76,10 +84,10 @@ class TrelloClientTest {
         );
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
-        // When
+        /* When */
         CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
 
-        // Then
+        /* Then */
         assertEquals("1", newCard.getId());
         assertEquals("test task", newCard.getName());
         assertEquals("https://test.com", newCard.getShortUrl());
