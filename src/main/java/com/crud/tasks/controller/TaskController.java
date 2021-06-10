@@ -5,6 +5,7 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +18,14 @@ import java.util.List;
 @RequestMapping("/v1/task")
 @RequiredArgsConstructor
 public class TaskController {
+    @Autowired
     private final DbService dbService;
+
+    @Autowired
     private final TaskMapper taskMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTask")
-    public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
+    @RequestMapping(method = RequestMethod.GET, value = "getTask/{taskId}")
+    public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(
                 dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new)
         );
@@ -32,6 +36,11 @@ public class TaskController {
         List<Task> tasks = dbService.getAllTasks();
         return taskMapper.mapToTaskDtoList(tasks);
     }
+
+//    @RequestMapping(method = RequestMethod.GET, value = "getTasks")
+//    public List<TaskDto> getTasks() {
+//        return taskMapper.mapToTaskDtoList(dbService.getAllTasks());
+//    }
 
     @GetMapping(value = "getTasks/{taskId}")
     public List<TaskDto> getTaskById(@PathVariable Long taskId) throws TaskNotFoundException  {
