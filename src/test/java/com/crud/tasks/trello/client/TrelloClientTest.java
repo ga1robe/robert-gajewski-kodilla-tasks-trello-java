@@ -40,7 +40,7 @@ class TrelloClientTest {
         when(trelloConfig.getTrelloToken()).thenReturn("test");
 
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
-        trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>(), new Badges(0, new AttachmentsByType(new NestedTrello(0, 0))));
+//        trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>(), new Badges(0, new AttachmentsByType(new NestedTrello(0, 0))));
 
         URI uri = new URI("https://test.com/members/test/boards?key=test&token=test&fields=name,id&lists=all");
 
@@ -79,8 +79,9 @@ class TrelloClientTest {
         CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
                 "1",
                 "test task",
-                "https://test.com",
-                new Badges(0, new AttachmentsByType(new NestedTrello(0, 0)))
+                "https://test.com"
+//                ,
+//                new Badges(0, new AttachmentsByType(new NestedTrello(0, 0)))
         );
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
