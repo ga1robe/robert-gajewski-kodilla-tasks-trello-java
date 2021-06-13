@@ -1,6 +1,7 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.*;
+import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.client.TrelloClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class TrelloController {
     @Autowired
     private final TrelloClient trelloClient;
 
+    @Autowired
+    private final TrelloService trelloService;
+
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
         /* return GET request */
@@ -25,6 +29,6 @@ public class TrelloController {
 
     @PostMapping( "createTrelloCard")
     public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return trelloClient.createNewCard(trelloCardDto);
+        return trelloService.createTrelloCard(trelloCardDto);
     }
 }
