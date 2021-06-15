@@ -1,0 +1,194 @@
+git push heroku master --force
+Wymienianie obiektów: 62, gotowe.
+Zliczanie obiektów: 100% (62/62), gotowe.
+Kompresja delt z użyciem do 4 wątków
+Kompresowanie obiektów: 100% (25/25), gotowe.
+Zapisywanie obiektów: 100% (36/36), 5.31 KiB | 543.00 KiB/s, gotowe.
+Total 36 (delta 8), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote: 
+remote: -----> Building on the Heroku-20 stack
+remote: -----> Using buildpack: heroku/gradle
+remote: -----> Gradle app detected
+remote: -----> Spring Boot detected
+remote: -----> Installing JDK 11... done
+remote: -----> Building Gradle app...
+remote: -----> executing ./gradlew build -x check
+remote:        To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/6.8.3/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+remote:        Daemon will be stopped at the end of the build 
+remote:        
+remote:        > Task :compileJava FAILED
+remote:        /tmp/build_aa627f8e/src/main/java/com/crud/tasks/service/SimpleEmailService.java:6: error: package org.springframework.mail does not exist
+remote:        import org.springframework.mail.MailException;
+remote:                                       ^
+remote:        /tmp/build_aa627f8e/src/main/java/com/crud/tasks/service/SimpleEmailService.java:7: error: package org.springframework.mail does not exist
+remote:        import org.springframework.mail.SimpleMailMessage;
+remote:                                       ^
+remote:        /tmp/build_aa627f8e/src/main/java/com/crud/tasks/service/SimpleEmailService.java:8: error: package org.springframework.mail.javamail does not exist
+remote:        import org.springframework.mail.javamail.JavaMailSender;
+remote:                                                ^
+remote:        /tmp/build_aa627f8e/src/main/java/com/crud/tasks/service/SimpleEmailService.java:18: error: cannot find symbol
+remote:            private final JavaMailSender javaMailSender;
+remote:                          ^
+remote:          symbol:   class JavaMailSender
+remote:          location: class SimpleEmailService
+remote:        /tmp/build_aa627f8e/src/main/java/com/crud/tasks/service/SimpleEmailService.java:32: error: cannot find symbol
+remote:            private SimpleMailMessage createMailMessage(final Mail mail) {
+remote:                    ^
+remote:          symbol:   class SimpleMailMessage
+remote:          location: class SimpleEmailService
+remote:        /tmp/build_aa627f8e/src/main/java/com/crud/tasks/service/SimpleEmailService.java:15: error: cannot find symbol
+remote:        @RequiredArgsConstructor
+remote:        ^
+remote:          symbol:   class JavaMailSender
+remote:          location: class SimpleEmailService
+remote:        6 errors
+remote:        
+remote:        FAILURE: Build failed with an exception.
+remote:        
+remote:        * What went wrong:
+remote:        Execution failed for task ':compileJava'.
+remote:        > Compilation failed; see the compiler error output for details.
+remote:        
+remote:        * Try:
+remote:        Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+remote:        
+remote:        * Get more help at https://help.gradle.org
+remote:        
+remote:        Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+remote:        Use '--warning-mode all' to show the individual deprecation warnings.
+remote:        See https://docs.gradle.org/6.8.3/userguide/command_line_interface.html#sec:command_line_warnings
+remote:        
+remote:        BUILD FAILED in 19s
+remote:        1 actionable task: 1 executed
+remote: 
+remote:  !     ERROR: Failed to run Gradle!
+remote:        We're sorry this build is failing. If you can't find the issue in application
+remote:        code, please submit a ticket so we can help: https://help.heroku.com
+remote:        You can also try reverting to the previous version of the buildpack by running:
+remote:        $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-gradle#previous-version
+remote:        
+remote:        Thanks,
+remote:        Heroku
+remote: 
+remote:  !     Push rejected, failed to compile Gradle app.
+remote: 
+remote:  !     Push failed
+remote:  !
+remote:  ! ## Warning - The same version of this code has already been built: d21c6713b18d6e930dc1f7d19d475a6032301e11
+remote:  !
+remote:  ! We have detected that you have triggered a build from source code with version d21c6713b18d6e930dc1f7d19d475a6032301e11
+remote:  ! at least twice. One common cause of this behavior is attempting to deploy code from a different branch.
+remote:  !
+remote:  ! If you are developing on a branch and deploying via git you must run:
+remote:  !
+remote:  !     git push heroku <branchname>:main
+remote:  !
+remote:  ! This article goes into details on the behavior:
+remote:  !   https://devcenter.heroku.com/articles/duplicate-build-version
+remote: 
+remote: Verifying deploy...
+remote: 
+remote: !       Push rejected to damp-bayou-80913.
+remote: 
+To https://git.heroku.com/damp-bayou-80913.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: nie można wypchnąć niektórych referencji do „https://git.heroku.com/damp-bayou-80913.git”
+robert@robert-Inspiron-5567:~/Development/Projects/tasks-Trello-Heroku$ /usr/bin/git push heroku master --force
+Wymienianie obiektów: 62, gotowe.
+Zliczanie obiektów: 100% (62/62), gotowe.
+Kompresja delt z użyciem do 4 wątków
+Kompresowanie obiektów: 100% (25/25), gotowe.
+Zapisywanie obiektów: 100% (36/36), 5.31 KiB | 1.77 MiB/s, gotowe.
+Total 36 (delta 8), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote: 
+remote: -----> Building on the Heroku-20 stack
+remote: -----> Using buildpack: heroku/gradle
+remote: -----> Gradle app detected
+remote: -----> Spring Boot detected
+remote: -----> Installing JDK 11... done
+remote: -----> Building Gradle app...
+remote: -----> executing ./gradlew build -x check
+remote:        To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/6.8.3/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+remote:        Daemon will be stopped at the end of the build 
+remote:        
+remote:        > Task :compileJava FAILED
+remote:        /tmp/build_b2ed96db/src/main/java/com/crud/tasks/service/SimpleEmailService.java:6: error: package org.springframework.mail does not exist
+remote:        import org.springframework.mail.MailException;
+remote:                                       ^
+remote:        /tmp/build_b2ed96db/src/main/java/com/crud/tasks/service/SimpleEmailService.java:7: error: package org.springframework.mail does not exist
+remote:        import org.springframework.mail.SimpleMailMessage;
+remote:                                       ^
+remote:        /tmp/build_b2ed96db/src/main/java/com/crud/tasks/service/SimpleEmailService.java:8: error: package org.springframework.mail.javamail does not exist
+remote:        import org.springframework.mail.javamail.JavaMailSender;
+remote:                                                ^
+remote:        /tmp/build_b2ed96db/src/main/java/com/crud/tasks/service/SimpleEmailService.java:18: error: cannot find symbol
+remote:            private final JavaMailSender javaMailSender;
+remote:                          ^
+remote:          symbol:   class JavaMailSender
+remote:          location: class SimpleEmailService
+remote:        /tmp/build_b2ed96db/src/main/java/com/crud/tasks/service/SimpleEmailService.java:32: error: cannot find symbol
+remote:            private SimpleMailMessage createMailMessage(final Mail mail) {
+remote:                    ^
+remote:          symbol:   class SimpleMailMessage
+remote:          location: class SimpleEmailService
+remote:        /tmp/build_b2ed96db/src/main/java/com/crud/tasks/service/SimpleEmailService.java:15: error: cannot find symbol
+remote:        @RequiredArgsConstructor
+remote:        ^
+remote:          symbol:   class JavaMailSender
+remote:          location: class SimpleEmailService
+remote:        6 errors
+remote:        
+remote:        FAILURE: Build failed with an exception.
+remote:        
+remote:        * What went wrong:
+remote:        Execution failed for task ':compileJava'.
+remote:        > Compilation failed; see the compiler error output for details.
+remote:        
+remote:        * Try:
+remote:        Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+remote:        
+remote:        * Get more help at https://help.gradle.org
+remote:        
+remote:        Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+remote:        Use '--warning-mode all' to show the individual deprecation warnings.
+remote:        See https://docs.gradle.org/6.8.3/userguide/command_line_interface.html#sec:command_line_warnings
+remote:        
+remote:        BUILD FAILED in 19s
+remote:        1 actionable task: 1 executed
+remote: 
+remote:  !     ERROR: Failed to run Gradle!
+remote:        We're sorry this build is failing. If you can't find the issue in application
+remote:        code, please submit a ticket so we can help: https://help.heroku.com
+remote:        You can also try reverting to the previous version of the buildpack by running:
+remote:        $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-gradle#previous-version
+remote:        
+remote:        Thanks,
+remote:        Heroku
+remote: 
+remote:  !     Push rejected, failed to compile Gradle app.
+remote: 
+remote:  !     Push failed
+remote:  !
+remote:  ! ## Warning - The same version of this code has already been built: d21c6713b18d6e930dc1f7d19d475a6032301e11
+remote:  !
+remote:  ! We have detected that you have triggered a build from source code with version d21c6713b18d6e930dc1f7d19d475a6032301e11
+remote:  ! at least twice. One common cause of this behavior is attempting to deploy code from a different branch.
+remote:  !
+remote:  ! If you are developing on a branch and deploying via git you must run:
+remote:  !
+remote:  !     git push heroku <branchname>:main
+remote:  !
+remote:  ! This article goes into details on the behavior:
+remote:  !   https://devcenter.heroku.com/articles/duplicate-build-version
+remote: 
+remote: Verifying deploy...
+remote: 
+remote: !       Push rejected to damp-bayou-80913.
+remote: 
+To https://git.heroku.com/damp-bayou-80913.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: nie można wypchnąć niektórych referencji do „https://git.heroku.com/damp-bayou-80913.git”
