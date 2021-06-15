@@ -17,7 +17,7 @@ public class EmailScheduler {
     private final TaskRepository taskRepository;
     private final AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 0 9 * * *")
+    @Scheduled(cron = "0 55 8 * * *")
     public void sendInformationEmail() {
         long size = taskRepository.count();
         String task_label = (size > 1) ? "tasks" : "task";
@@ -29,5 +29,6 @@ public class EmailScheduler {
                         null
                 )
         );
+
     }
 }
