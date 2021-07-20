@@ -31,16 +31,7 @@ class TrelloClientTest {
     private TrelloConfig trelloConfig;
 
     @Test
-    public void shouldFetchTrelloBoards_() throws URISyntaxException {
-        // Given
-        lenient().when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
-        lenient().when(trelloConfig.getTrelloAppKey()).thenReturn("test");
-        lenient().when(trelloConfig.getTrelloToken()).thenReturn("test");
-    }
-
-    @Test
     public void shouldFetchTrelloBoards() throws URISyntaxException {
-        /* Fail version to repair */
         /* Given */
         lenient().when(trelloConfig.getTrelloApiEndpoint()).thenReturn("https://test.com");
         lenient().when(trelloConfig.getTrelloUser()).thenReturn("test");
@@ -91,17 +82,16 @@ class TrelloClientTest {
         );
         URI uri = new URI("https://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
 
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
+        CreatedTrelloCardDto createdTrelloCard = new CreatedTrelloCardDto(
                 "1",
                 "test task",
                 "https://test.com"
-//                ,
-//                new Badges(0, new AttachmentsByType(new NestedTrello(0, 0)))
+//                , new Badges(0, new AttachmentsByType(new NestedTrello(0, 0)))
         );
 
-        when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
+        when(restTemplate.postForObject(uri, null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCard);
         /* When */
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
+        CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
 
         /* Then */
         assertEquals("1", newCard.getId());
