@@ -18,6 +18,7 @@ public class MailCreatorService {
         context.setVariable("message", message);
 //        context.setVariable("tasks_url", "http://localhost:8888/crud");
         context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/task/");
+//        context.setVariable("tasks_url", "http://localhost:8080/v1/task/");
         context.setVariable("button", "Visit website");
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
