@@ -48,4 +48,17 @@ public class MailCreatorService {
 
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
+
+    public String tasksQuantityEmail(String message) {
+        Context context = new Context();
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/task/");
+//        context.setVariable("tasks_url", "http://localhost:8080/v1/task/");
+        context.setVariable("button", "Look at data!");
+        context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("company_config", companyConfig);
+
+        return templateEngine.process("mail/tasks-quantity-trello-card-mail", context);
+    }
+
 }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.crud.tasks.service.TempMailType.SCHEDULED_MAIL;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,8 @@ public class SimpleEmailService {
 
     @Autowired
     private MailCreatorService mailCreatorService;
+
+    private TempMailType emailType = SCHEDULED_MAIL;
 
     public void send(final Mail mail) {
         log.info("Starting email preparation...");
@@ -41,6 +45,16 @@ public class SimpleEmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
+
+            switch(emailType) {
+                case TRELLO_CARD_MAIL:
+                    messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+                    break;
+                case SCHEDULED_MAIL:
+                    messageHelper.setText(mailCreatorService.tasksQuantityEmail(mail.getMessage()), true);
+                    break;
+            }
+
             messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
         };
     }
