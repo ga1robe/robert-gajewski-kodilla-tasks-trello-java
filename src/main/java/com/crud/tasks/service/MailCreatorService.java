@@ -34,7 +34,7 @@ public class MailCreatorService {
         context.setVariable("application_function", "Application that allows to send tasks to Trello Board");
 
         context.setVariable("company_config", companyConfig);
-        context.setVariable("show_button", true);
+        context.setVariable("show_button", false);
         context.setVariable("is_friend", false);
 
         return templateEngine.process("mail/created-trello-card-mail", context);
