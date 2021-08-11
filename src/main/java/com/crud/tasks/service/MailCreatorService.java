@@ -1,5 +1,6 @@
 package com.crud.tasks.service;
 
+import com.crud.tasks.config.AdminConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,9 @@ import org.thymeleaf.context.Context;
 
 @Service
 public class MailCreatorService {
+
+    @Autowired
+    private AdminConfig adminConfig;
 
     @Autowired
     @Qualifier("templateEngine")
@@ -20,6 +24,7 @@ public class MailCreatorService {
         context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/task/");
 //        context.setVariable("tasks_url", "http://localhost:8080/v1/task/");
         context.setVariable("button", "Visit website");
+        context.setVariable("admin_name", adminConfig.getAdminName());
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
