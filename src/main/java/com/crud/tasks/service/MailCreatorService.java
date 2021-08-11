@@ -31,7 +31,7 @@ public class MailCreatorService {
         context.setVariable("admin_name", adminConfig.getAdminName());
 
         context.setVariable("application_name", "Kodilla CRUD App");
-        context.setVariable("application_function", "Application that allows to send tasks to Trello Board");
+        context.setVariable("application_function", "Application that allows to send tasks to Trello Board ");
 
         context.setVariable("company_config", companyConfig);
         context.setVariable("is_friend", false);
