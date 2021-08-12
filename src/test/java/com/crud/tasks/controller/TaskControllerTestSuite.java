@@ -103,7 +103,6 @@ class TaskControllerTestSuite {
 
         /* When & Then */
         mockMvc.perform(delete("/v1/trello/tasks/taskId=1")
-//        mockMvc.perform(delete("/v1/trello/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
