@@ -36,7 +36,7 @@ public class TaskController {
 //        );
 //    }
 
-    @Scope("prototype")
+//    @Scope("prototype")
     @Qualifier("tasks/{taskId}")
     @GetMapping(value = "/tasks/{taskId}")
     public List<TaskDto> getTaskById(@PathVariable Long taskId) throws TaskNotFoundException  {
