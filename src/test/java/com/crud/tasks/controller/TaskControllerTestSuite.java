@@ -102,7 +102,8 @@ class TaskControllerTestSuite {
         when(service.getTask(task.getId())).thenReturn(Optional.ofNullable(task));
 
         /* When & Then */
-        mockMvc.perform(delete("/v1/trello/tasks/Id=1")
+        mockMvc.perform(delete("/v1/trello/tasks/taskId=1")
+//        mockMvc.perform(delete("/v1/trello/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
