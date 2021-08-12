@@ -17,7 +17,6 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-//@RequestMapping("/v1/task")
 @RequestMapping("/v1/trello")
 @RequiredArgsConstructor
 public class TaskController {
@@ -27,16 +26,6 @@ public class TaskController {
     @Autowired
     private final TaskMapper taskMapper;
 
-//    @Scope("prototype")
-//    @Qualifier("tasks/{taskId}")
-//    @RequestMapping(method = RequestMethod.GET, value = "/tasks/{taskId}")
-//    public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
-//        return taskMapper.mapToTaskDto(
-//                dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new)
-//        );
-//    }
-
-//    @Scope("prototype")
     @Qualifier("tasks/{taskId}")
     @GetMapping(value = "/tasks/{taskId}")
     public List<TaskDto> getTaskById(@PathVariable Long taskId) throws TaskNotFoundException  {
@@ -46,7 +35,6 @@ public class TaskController {
             throw new TaskNotFoundException();
     }
 
-//    @Scope("prototype")
     @Qualifier("tasks")
     @GetMapping(value = "/tasks")
     public List<TaskDto> getTasks() {
@@ -54,8 +42,8 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(tasks);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/tasks/taskId={taskId}")
-//    @RequestMapping(method = RequestMethod.DELETE, value = "/tasks/{taskId}")
+//    @RequestMapping(method = RequestMethod.DELETE, value = "/tasks/taskId={taskId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/tasks/Id={taskId}")
     public void deleteTask(@PathVariable Long taskId) {
         dbService.deleteTaskById(taskId);
     }
