@@ -27,13 +27,23 @@ public class TaskController {
     @Autowired
     private final TaskMapper taskMapper;
 
+//    @Scope("prototype")
+//    @Qualifier("tasks/{taskId}")
+//    @RequestMapping(method = RequestMethod.GET, value = "/tasks/{taskId}")
+//    public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
+//        return taskMapper.mapToTaskDto(
+//                dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new)
+//        );
+//    }
+
     @Scope("prototype")
     @Qualifier("tasks/{taskId}")
-    @RequestMapping(method = RequestMethod.GET, value = "/tasks/{taskId}")
-    public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
-        return taskMapper.mapToTaskDto(
-                dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new)
-        );
+    @GetMapping(value = "/tasks/{taskId}")
+    public List<TaskDto> getTaskById(@PathVariable Long taskId) throws TaskNotFoundException  {
+        if (!dbService.getTaskById(taskId).isEmpty())
+            return taskMapper.mapToTaskDtoList(dbService.getTaskById(taskId));
+        else
+            throw new TaskNotFoundException();
     }
 
 //    @Scope("prototype")
@@ -43,17 +53,6 @@ public class TaskController {
         List<Task> tasks = dbService.getAllTasks();
         return taskMapper.mapToTaskDtoList(tasks);
     }
-
-
-//    @Scope("prototype")
-//    @Qualifier("tasks/{taskId}")
-//    @GetMapping(value = "/tasks/{taskId}")
-//    public List<TaskDto> getTaskById(@PathVariable Long taskId) throws TaskNotFoundException  {
-//        if (!dbService.getTaskById(taskId).isEmpty())
-//            return taskMapper.mapToTaskDtoList(dbService.getTaskById(taskId));
-//        else
-//            throw new TaskNotFoundException();
-//    }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/tasks/{taskId}")
     public void deleteTask(@PathVariable Long taskId) {
