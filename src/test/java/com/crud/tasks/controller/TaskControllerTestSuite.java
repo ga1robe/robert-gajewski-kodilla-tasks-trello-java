@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,31 +42,39 @@ class TaskControllerTestSuite {
         /* Given */
         when(taskMapper.mapToTaskDtoList(service.getAllTasks())).thenReturn(List.of());
         /* When & Then */
-        mockMvc.perform(get("/v1/task/getTasks")
+        mockMvc.perform(get("/v1/trello/tasks")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful()) //is(200)
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 
     @Test
-    public void shouldGetTaskList() throws Exception {
-        /* Given */
-        List<TaskDto> taskListDto = new ArrayList<>();
-        taskListDto.add(new TaskDto(1L, "Test title 1", "Test content 1"));
-        taskListDto.add(new TaskDto(2L, "Test title 2", "Test content 2"));
-        when(taskMapper.mapToTaskDtoList(service.getAllTasks())).thenReturn(taskListDto);
-        /* When & Then */
-        mockMvc.perform(get("/v1/task/getTasks")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is2xxSuccessful())
-                /* Task List fields */
+    public void shouldGetTasks() throws Exception {
+        //given
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(new Task(1L, "test_title1", "test_content1"));
+        tasks.add(new Task(2L, "test_title2", "test_content2"));
+
+        List<TaskDto> tasksDto = new ArrayList<>();
+        tasksDto.add(new TaskDto(1L, "test_title1", "test_content1"));
+        tasksDto.add(new TaskDto(2L, "test_title2", "test_content2"));
+
+        when(service.getAllTasks()).thenReturn(tasks);
+        when(taskMapper.mapToTaskDtoList(tasks)).thenReturn(tasksDto);
+
+        //when & then
+        mockMvc.perform(get("/v1/trello/tasks/").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].title", is("test_title1")))
+                .andExpect(jsonPath("$[0].content", is("test_content1")))
                 .andExpect(jsonPath("$[1].id", is(2)))
-                .andExpect(jsonPath("$[0].title", is("Test title 1")))
-                .andExpect(jsonPath("$[0].content", is("Test content 1")))
-                .andExpect(jsonPath("$[1].title", is("Test title 2")))
-                .andExpect(jsonPath("$[1].content", is("Test content 2")));
+                .andExpect(jsonPath("$[1].title", is("test_title2")))
+                .andExpect(jsonPath("$[1].content", is("test_content2")));
+
+        verify(service, times(1)).getAllTasks();
+        verify(taskMapper, times(1)).mapToTaskDtoList(tasks);
     }
 
     @Test
@@ -79,7 +87,7 @@ class TaskControllerTestSuite {
         when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
 
         //When & Then
-        mockMvc.perform(get("/v1/task/getTask/1")
+        mockMvc.perform(get("/v1/trello/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.id", is(1)))
@@ -94,7 +102,7 @@ class TaskControllerTestSuite {
         when(service.getTask(task.getId())).thenReturn(Optional.ofNullable(task));
 
         /* When & Then */
-        mockMvc.perform(delete("/v1/task/deleteTask/taskId=1")
+        mockMvc.perform(delete("/v1/trello/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -110,7 +118,7 @@ class TaskControllerTestSuite {
         String jsonContent = gson.toJson(taskDto);
 
         /* When & Then */
-        mockMvc.perform(put("/v1/task/updateTask")
+        mockMvc.perform(put("/v1/trello/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -133,7 +141,7 @@ class TaskControllerTestSuite {
         String jsonContent = gson.toJson(task);
 
         /* When & Then */
-        mockMvc.perform(post("/v1/task/createTask")
+        mockMvc.perform(post("/v1/trello/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))

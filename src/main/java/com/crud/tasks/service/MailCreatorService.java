@@ -34,8 +34,8 @@ public class MailCreatorService {
         Context context = new Context();
         context.setVariable("message", message);
 //        context.setVariable("tasks_url", "http://localhost:8888/crud");
-        context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/task/");
-//        context.setVariable("tasks_url", "http://localhost:8080/v1/task/");
+        context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/trello");
+//        context.setVariable("tasks_url", "http://localhost:8080/v1/trello");
         context.setVariable("button", "Visit website");
 //        context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("admin_config", adminConfig);
@@ -52,8 +52,8 @@ public class MailCreatorService {
     public String tasksQuantityEmail(String message) {
         Context context = new Context();
         context.setVariable("message", message);
-        context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/task/");
-//        context.setVariable("tasks_url", "http://localhost:8080/v1/task/");
+        context.setVariable("tasks_url", "https://damp-bayou-80913.herokuapp.com/v1/trello/");
+//        context.setVariable("tasks_url", "http://localhost:8080/v1/trello/");
         context.setVariable("button", "Look at data!");
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("company_config", companyConfig);

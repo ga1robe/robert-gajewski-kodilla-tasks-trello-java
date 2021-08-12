@@ -16,21 +16,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TrelloController {
 
-//    @Autowired
-//    private final TrelloClient trelloClient;
-
     @Autowired
     private TrelloFacade trelloFacade;
 
-//    @Autowired
-//    private final TrelloService trelloService;
 
-    @GetMapping("getTrelloBoards")
+    @GetMapping("/boards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloFacade.fetchTrelloBoards();
     }
 
-    @PostMapping( "createTrelloCard")
+    @PostMapping( "/card")
     public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloFacade.createCard(trelloCardDto);
     }
